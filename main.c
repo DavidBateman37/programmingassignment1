@@ -3,14 +3,17 @@
 
 int main(){
     
+char letter;
 char message[100];
-char alphabet[26]= {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z'};
+char alphabet[27]= {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z', '\0'};
 int key;
 int i;
 
+printf(" Enter message\n");
+scanf("%s", message);
+
 for (i=0; message[i]!= '\0'; i++)
 { 
-   letter = message[i];
    
    if (letter >= 'A' && letter <= 'Z')
    {
@@ -18,10 +21,11 @@ for (i=0; message[i]!= '\0'; i++)
        message[i] = letter;
             
    }
-   else {
-       printf("Error");
+   else if (letter > 'z') {
+       letter = letter - 'z' + 'a' -1;
+       
    }
-     
+      letter = message[i];
 }
 
     printf{"Encrypted message; %s", letter};
