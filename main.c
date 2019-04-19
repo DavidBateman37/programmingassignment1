@@ -9,12 +9,12 @@ char alphabet[27]= {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
 int key;
 int i;
 
-printf(" Enter message\n");
+printf("Enter a message:\n");
 scanf("%s", message);
-printf("Enter a key\n");
+printf("Enter a key:\n");
 scanf("%d", &key); 
 for (i=0; message[i]!= '\0'; i++)
-{ 
+{ letter= message[i];
    
    if (letter >= 'A' && letter <= 'Z')
    {
@@ -28,7 +28,7 @@ for (i=0; message[i]!= '\0'; i++)
        message[i]= letter;
 }
 
-    printf("Encrypted message; %s", letter);
+    printf("Encrypted message: %s", letter);
 
     return 0;
 }
