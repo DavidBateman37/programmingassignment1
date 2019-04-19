@@ -11,24 +11,24 @@ int i;
 
 printf(" Enter message\n");
 scanf("%s", message);
-
+printf("Enter a key\n");
+scanf("%d", &key); 
 for (i=0; message[i]!= '\0'; i++)
 { 
    
    if (letter >= 'A' && letter <= 'Z')
    {
        letter = letter + key;
-       message[i] = letter;
             
    }
-   else if (letter > 'z') {
-       letter = letter - 'z' + 'a' -1;
+   else if (letter > 'Z') {
+       letter = letter - 'Z' + 'A' -1;
        
    }
-      letter = message[i];
+       message[i]= letter;
 }
 
-    printf{"Encrypted message; %s", letter};
+    printf("Encrypted message; %s", letter);
 
     return 0;
 }
