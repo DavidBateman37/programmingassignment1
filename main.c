@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-
 int main(){
     
 char letter;
@@ -16,15 +15,15 @@ printf("Enter a key:\n");
 scanf("%d", &key); 
 for (i=0; message[i]!= '\0'; i++)
 {   letter= message[i];
-    lk= letter + key;
+    lk= letter - key;
    
    if (lk >= 65 && lk <= 90)
    {
        letter = lk;
             
    }
-   else if (lk > 90) {
-       letter = lk - 26;
+   else if (lk < 65) {
+       letter = lk + 26;
        
    }
        message[i]= letter;
