@@ -8,7 +8,14 @@ char alphabet[27]= {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
 int key;
 int i;
 int lk;
+int test;
 
+printf("Select a test:\n");
+scanf("%d", &test);
+switch(test){
+    
+    case 1:
+    
 printf("Enter a message:\n");
 scanf("%s", message);
 printf("Enter a key:\n");
@@ -30,6 +37,31 @@ for (i=0; message[i]!= '\0'; i++)
 }
 
     printf("Encrypted message: %s\n", message);
+    break;
+    
+    case 2:
+    printf("Enter a message:\n");
+scanf("%s", message);
+printf("Enter a key:\n");
+scanf("%d", &key); 
+for (i=0; message[i]!= '\0'; i++)
+{   letter= message[i];
+    lk= letter + key;
+   
+   if (lk >= 65 && lk <= 90)
+   {
+       letter = lk;
+            
+   }
+   else if (lk > 90) {
+       letter = lk - 26;
+       
+   }
+       message[i]= letter;
+}
 
-    return 0;
+    printf("Encrypted message: %s\n", message);
+    break;
+
+}
 }
