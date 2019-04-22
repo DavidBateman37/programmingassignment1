@@ -36,7 +36,7 @@ for (i=0; message[i]!= '\0'; i++)
        message[i]= letter;
 }
 
-    printf("Encrypted message: %s\n", message);
+    printf("Decrypted message: %s\n", message);
     break;
     
     case 2:
