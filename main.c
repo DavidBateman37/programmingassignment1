@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+void encryptRotation(char*message, int key);
+void decryptRotation(char*message, int key);
 int main(){
     
 char letter;
@@ -10,8 +12,19 @@ int i;
 int lk;
 int test;
 
-printf("Select a test:\n");
-scanf("%d", &test);
+printf("Select a test by entering a number:\n");
+printf("1: Rotation cipher encryption with a key\n");
+printf("2: Rotation cipher decryption with a key\n");
+if (test>=1 && test<=6){
+    scanf("%d", &test);
+    printf("Your selection: %d\n", test);
+}
+
+else {
+    printf("Error, please select a test");
+    return 0;
+}
+
 switch(test){
     
     case 1:
