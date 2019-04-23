@@ -8,7 +8,6 @@ int main(){
 char message[100];
 char alphabet[27]= {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z', '\0'};
 int key;
-int i;
 int test;
 
 printf("Select a test by entering a number:\n");
@@ -22,7 +21,7 @@ switch(test){
     
     case 1:
 printf("Enter a message:\n");
-scanf("%s", &message);
+scanf("%s", message);
 printf("Enter a key:\n");
 scanf("%d", &key); 
 rotationEncrypt(message, key);
