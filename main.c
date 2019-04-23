@@ -15,6 +15,8 @@ int test;
 printf("Select a test by entering a number:\n");
 printf("1: Rotation cipher encryption with a key\n");
 printf("2: Rotation cipher decryption with a key\n");
+printf("3: Subsitution cipher encryption with a substitute alphabet\n");
+printf("4: Substitution cipher decryption with a substitute alphabet\n");
 printf("Choose a test: \n");
 scanf("%d", &test);
 
@@ -46,11 +48,21 @@ rotationDecrypt(message, key);
     case 3:
 printf("Enter a message:\n");
 scanf(" %[^\n]", message);
-printf("Enter a subsitution alphabet\n");
+printf("Enter a substitution alphabet\n");
 scanf("%s", alphabetSub);
 substitutionEncrypt(message, alphabetSub);
 
     printf("Encrypted message: %s\n", message);
+    break;
+    
+    case 4:
+printf("Enter a message:\n");
+scanf(" %[^\n]", message);
+printf("Enter a substitution alphabet\n");
+scanf("%s", alphabetSub);
+substitutionDecrypt(message, alphabetSub);
+
+    printf("Decrypted message: %s\n", message);
     break;
 
 
@@ -124,4 +136,26 @@ void substitutionEncrypt(char*message, char*sub){
         }
         message[i] = letter;
     }
+}
+
+void substitutionDecrypt(char*message, char*sub){
+    int i;
+    int compare;
+    int letter;
+    for(i=0; message[i]!= '0'; i++){
+        letter = message[i];
+        if (letter >= 96 && letter <= 122)
+        {
+            letter = letter - 32;
+        }
+        if(letter>= 65 && letter<=90) {
+            
+            for( compare=0; compare<27; compare++) {
+                if(message[i]== sub[i]){
+                    break;
+                }
+            }
+        }
+        message[i]= compare + 65;
+        }
 }
