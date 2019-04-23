@@ -3,10 +3,12 @@
 
 void rotationEncrypt(char*message, int key);
 void rotationDecrypt(char*message, int key);
+void substitutionEncrypt(char*message, char*sub);
+void substitutionDecrypt(char*message, char*sub);
 int main(){
     
 char message[100];
-char alphabet[27]= {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'Y', 'Z', '\0'};
+char alphabetSub[27];
 int key;
 int test;
 
@@ -21,7 +23,7 @@ switch(test){
     
     case 1:
 printf("Enter a message:\n");
-scanf("%s", message);
+scanf(" %[^\n]", message);
 printf("Enter a key:\n");
 scanf("%d", &key); 
 rotationEncrypt(message, key);
@@ -32,7 +34,7 @@ rotationEncrypt(message, key);
     
     case 2:
 printf("Enter a message:\n");
-scanf("%s", message);
+scanf(" %[^\n]", message);
 printf("Enter a key:\n");
 scanf("%d", &key); 
 rotationDecrypt(message, key);
@@ -40,6 +42,17 @@ rotationDecrypt(message, key);
 
     printf("Encrypted message: %s\n", message);
     break;
+    
+    case 3:
+printf("Enter a message:\n");
+scanf(" %[^\n]", message);
+printf("Enter a subsitution alphabet\n");
+scanf("%s", alphabetSub);
+substitutionEncrypt(message, alphabetSub);
+
+    printf("Encrypted message: %s\n", message);
+    break;
+
 
 }
 }
@@ -94,4 +107,21 @@ if (letter >= 96 && letter <= 122)
    }
        message[i]= letter;
 }
+}
+
+void substitutionEncrypt(char*message, char*sub){
+    int i;
+    int letter;
+    
+    for(i=0; message[i]!= '0'; i++){
+        letter = message[i];
+        if (letter >= 96 && letter <= 122)
+        {
+            letter = letter - 32;
+        }
+        if(letter>=65 && letter<=90){
+            letter = sub[letter-65];
+        }
+        message[i] = letter;
+    }
 }
