@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-void encryptRotation(char*message, int key);
-void decryptRotation(char*message, int key);
+void rotationEncrypt(char*message, int key);
+void rotationDecrypt(char*message, int key);
 int main(){
     
 char letter;
@@ -15,7 +15,9 @@ int test;
 printf("Select a test by entering a number:\n");
 printf("1: Rotation cipher encryption with a key\n");
 printf("2: Rotation cipher decryption with a key\n");
-if (test>=1 && test<=6){
+printf("Choose a test: \n");
+scanf("%d", test);
+if (test>=1, test<=6){
     scanf("%d", &test);
     printf("Your selection: %d\n", test);
 }
@@ -28,36 +30,35 @@ else {
 switch(test){
     
     case 1:
-    
+rotationEncrypt(message, key);   
 printf("Enter a message:\n");
 scanf("%s", message);
 printf("Enter a key:\n");
 scanf("%d", &key); 
-for (i=0; message[i]!= '\0'; i++)
-{   letter= message[i];
-    lk= letter - key;
-   
-   if (lk >= 65 && lk <= 90)
-   {
-       letter = lk;
-            
-   }
-   else if (lk < 65) {
-       letter = lk + 26;
-       
-   }
-       message[i]= letter;
-}
+
 
     printf("Decrypted message: %s\n", message);
     break;
     
     case 2:
-    printf("Enter a message:\n");
+rotationalDecrypt(message, key);
+printf("Enter a message:\n");
 scanf("%s", message);
 printf("Enter a key:\n");
 scanf("%d", &key); 
-for (i=0; message[i]!= '\0'; i++)
+
+
+    printf("Encrypted message: %s\n", message);
+    break;
+
+}
+}
+
+void rotationEncrypt(char*message, int key){
+    
+ int i;
+ int lk;
+ for (i=0; message[i]!= '\0'; i++)
 {   letter= message[i];
     lk= letter + key;
    
@@ -72,9 +73,25 @@ for (i=0; message[i]!= '\0'; i++)
    }
        message[i]= letter;
 }
+}
 
-    printf("Encrypted message: %s\n", message);
-    break;
-
+void rotationalDecrypt(char*message, int key){
+    
+    int i;
+    in lk;
+    for (i=0; message[i]!= '\0'; i++)
+{   letter= message[i];
+    lk= letter - key;
+   
+   if (lk >= 65 && lk <= 90)
+   {
+       letter = lk;
+            
+   }
+   else if (lk < 65) {
+       letter = lk + 26;
+       
+   }
+       message[i]= letter;
 }
 }
