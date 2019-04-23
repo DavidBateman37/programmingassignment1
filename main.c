@@ -140,7 +140,7 @@ void substitutionEncrypt(char*message, char*sub){
 
 void substitutionDecrypt(char*message, char*sub){
     int i;
-    int compare;
+    int compare=0;
     int letter;
     for(i=0; message[i]!= '0'; i++){
         letter = message[i];
@@ -148,14 +148,14 @@ void substitutionDecrypt(char*message, char*sub){
         {
             letter = letter - 32;
         }
-        if(letter>= 65 && letter<=90) {
+        if(letter >= 65 && letter <=90) {
             
             for( compare=0; compare<27; compare++) {
-                if(message[i]== sub[i]){
+                if(message[i]== sub[compare]) {
                     break;
                 }
             }
-        }
         message[i]= compare + 65;
         }
+    }
 }
