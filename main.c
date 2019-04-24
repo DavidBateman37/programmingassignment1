@@ -41,7 +41,7 @@ rotationEncrypt(message, key);
     
     case 2:
 printf("Enter a message:\n");
-scanf("%[^\n]", message);
+scanf(" %[^\n]", message);
 printf("Enter a key:\n");
 scanf("%d", &key); 
 rotationDecrypt(message, key);
@@ -116,27 +116,29 @@ if (letter >= 96 && letter <= 122)
 void rotationDecrypt(char*message, int key){
     
     int i;
-    int lk;
     char letter;
-    for (i=0; message[i]!= '\0'; i++)
-{   letter= message[i];
-if (letter >= 96 && letter <= 122)
-        {
-            letter = letter - 32;
-        }
-    lk= letter - key;
-   
-   if (lk >= 65 && lk <= 90)
-   {
-       letter = lk;
-            
-   }
-   else if (lk < 65) {
-       letter = lk + 26;
-       
-   }
-       message[i]= letter;
-}
+    for(i = 0; message[i] != '\0'; ++i){
+		letter = message[i];
+		
+		if(letter >= 97 && letter <= 122){
+			letter = letter - key;
+			
+			if(letter < 97){
+				letter = letter + 26;
+			}
+			
+			message[i] = letter - 32;
+		}
+		else if(letter >= 65 && letter <= 90){
+			letter = letter - key;
+			
+			if(letter < 65){
+				letter = letter + 26;
+			}
+			
+			message[i] = letter;
+		}
+	}
 }
 
 void substitutionEncrypt(char*message, char*sub){
@@ -145,7 +147,7 @@ void substitutionEncrypt(char*message, char*sub){
     
     for(i=0; message[i]!= '0'; i++){
         letter = message[i];
-        if (letter >= 96 && letter <= 122)
+        if (letter >= 97 && letter <= 122)
         {
             letter = letter - 32;
         }
@@ -216,23 +218,26 @@ void rotationDecryptwok(char*completeMessage, int keycorrect){
     char letter;
     int lk;
 
-for (i=0; completeMessage[i]!= '\0'; i++)
-{   letter= completeMessage[i];
-if (letter >= 96 && letter <= 122)
-        {
-            letter = letter - 32;
-        }
-    lk= letter - keycorrect;
-   
-   if (lk >= 65 && lk <= 90)
-   {
-       letter = lk;
-            
-   }
-   else if (lk < 65) {
-       letter = lk + 26;
-       
-   }
-       completeMessage[i]= letter;
+for(i = 0; completeMessage[i] != '\0'; ++i){
+		letter = completeMessage[i];
+		
+		if(letter >= 97 && letter <= 122){
+			letter = letter - keycorrect;
+			
+			if(letter < 97){
+				letter = letter + 26;
+			}
+			
+			completeMessage[i] = letter - 32;
+		}
+		else if(letter >= 65 && letter <= 90){
+			letter = letter - keycorrect;
+			
+			if(letter < 65){
+				letter = letter + 26;
+			}
+			
+			completeMessage[i] = letter;
+		}
 }
 }
