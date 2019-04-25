@@ -97,7 +97,6 @@ void rotationEncrypt(char *message, int key)
     int lk;
     char letter;
     for (i=0; message[i]!= '\0'; i++)
-    
     {
         letter= message[i];
         
@@ -125,26 +124,33 @@ void rotationEncrypt(char *message, int key)
     }
 }
 
-void rotationDecrypt(char*message, int key){
+void rotationDecrypt(char*message, int key)
+{
     
     int i;
     char letter;
-    for(i = 0; message[i] != '\0'; ++i){
+    for(i = 0; message[i] != '\0'; ++i)
+    {
 		letter = message[i];
 		
-		if(letter >= 97 && letter <= 122){
+		if(letter >= 97 && letter <= 122)
+		{
 			letter = letter - key;
 			
-			if(letter < 97){
+			if(letter < 97)
+			{
 				letter = letter + 26;
 			}
 			
 			message[i] = letter - 32;
 		}
-		else if(letter >= 65 && letter <= 90){
+		
+		else if(letter >= 65 && letter <= 90)
+		{
 			letter = letter - key;
 			
-			if(letter < 65){
+			if(letter < 65)
+			{
 				letter = letter + 26;
 			}
 			
@@ -153,41 +159,54 @@ void rotationDecrypt(char*message, int key){
 	}
 }
 
-void substitutionEncrypt(char*message, char*sub){
+void substitutionEncrypt(char*message, char*sub)
+{
     int i;
     int letter;
     
-    for(i=0; message[i]!= '0'; i++){
+    for(i=0; message[i]!= '0'; i++)
+    {
         letter = message[i];
+        
         if (letter >= 97 && letter <= 122)
         {
             letter = letter - 32;
         }
-        if(letter>=65 && letter<=90){
+        
+        if(letter>=65 && letter<=90)
+        {
             letter = sub[letter-65];
         }
+        
         message[i] = letter;
     }
 }
 
-void substitutionDecrypt(char*message, char*sub){
+void substitutionDecrypt(char*message, char*sub)
+{
     int i;
     int compare=0;
     int letter;
-    for(i=0; message[i]!= '0'; i++){
+    
+    for(i=0; message[i]!= '0'; i++)
+    {
         letter = message[i];
+        
         if (letter >= 96 && letter <= 122)
         {
             letter = letter - 32;
         }
-        if(letter >= 65 && letter <=90) {
-            
-            for( compare=0; compare<27; compare++) {
-                if(message[i]== sub[compare]) {
+        
+        if(letter >= 65 && letter <=90)
+        {
+            for( compare=0; compare<27; compare++)
+            {
+                if(message[i]== sub[compare])
+                {
                     break;
                 }
-            }
-        message[i]= compare + 65;
+            }    
+            message[i]= compare + 65;
         }
     }
 }
