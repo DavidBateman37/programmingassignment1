@@ -90,30 +90,39 @@ int main()
     }
 }
 
-void rotationEncrypt(char *message, int key){
+void rotationEncrypt(char *message, int key)
+{
     
- int i;
- int lk;
- char letter;
- for (i=0; message[i]!= '\0'; i++)
-{   letter= message[i];
-if (letter >= 96 && letter <= 122)
+    int i;
+    int lk;
+    char letter;
+    for (i=0; message[i]!= '\0'; i++)
+    
+    {
+        letter= message[i];
+        
+        if (letter >= 96 && letter <= 122)
+    
         {
             letter = letter - 32;
         }
-    lk= letter + key;
+        
+        lk= letter + key;
    
-   if (lk >= 65 && lk <= 90)
-   {
-       letter = lk;
-            
-   }
-   else if (lk > 90) {
-       letter = lk - 26;
+        if (lk >= 65 && lk <= 90)
        
-   }
+        {
+            letter = lk;    
+        }
+    
+        else if (lk > 90)
+        
+        {
+            letter = lk - 26;       
+        }
+       
        message[i]= letter;
-}
+    }
 }
 
 void rotationDecrypt(char*message, int key){
