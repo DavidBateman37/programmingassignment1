@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <string.h>
 
 void rotationEncrypt(char*message, int key);
 void rotationDecrypt(char*message, int key);
@@ -7,84 +6,88 @@ void substitutionEncrypt(char*message, char*sub);
 void substitutionDecrypt(char*message, char*sub);
 void wok(char*message, int key);
 void rotationDecryptwok(char*completeMessage, int keycorrect);
-int main(){
+
+int main()
+{
     
-char message[100];
-char alphabetSub[27];
-int key;
-int test;
-int keycorrect;
-char completeMessage[100];
+    char message[100];
+    char alphabetSub[27];
+    int key;
+    int test;
+    int keycorrect;
+    char completeMessage[100];
 
-printf("Select a test by entering a number:\n");
-printf("1: Rotation cipher encryption with a key\n");
-printf("2: Rotation cipher decryption with a key\n");
-printf("3: Subsitution cipher encryption with a substitute alphabet\n");
-printf("4: Substitution cipher decryption with a substitute alphabet\n");
-printf("5: Rotation cipher decryption without a key\n");
-printf("Choose a test: \n");
-scanf("%d", &test);
+    printf("Select a test by entering a number:\n");
+    printf("1: Rotation cipher encryption with a key\n");
+    printf("2: Rotation cipher decryption with a key\n");
+    printf("3: Subsitution cipher encryption with a substitute alphabet\n");
+    printf("4: Substitution cipher decryption with a substitute alphabet\n");
+    printf("5: Rotation cipher decryption without a key\n");
+    printf("Choose a test: \n");
+    scanf("%d", &test);
 
 
-switch(test){
+    switch(test)
+    {
     
-    case 1:
-printf("Enter a message:\n");
-scanf(" %[^\n]", message);
-printf("Enter a key:\n");
-scanf("%d", &key); 
-rotationEncrypt(message, key);
+        case 1:
+        printf("Enter a message:\n");
+        scanf(" %[^\n]", message);
+        printf("Enter a key:\n");
+        scanf("%d", &key); 
+        rotationEncrypt(message, key);
 
 
-    printf("Decrypted message: %s\n", message);
-    break;
+        printf("Decrypted message: %s\n", message);
+        break;
     
-    case 2:
-printf("Enter a message:\n");
-scanf(" %[^\n]", message);
-printf("Enter a key:\n");
-scanf("%d", &key); 
-rotationDecrypt(message, key);
+        case 2:
+        printf("Enter a message:\n");
+        scanf(" %[^\n]", message);
+        printf("Enter a key:\n");
+        scanf("%d", &key); 
+        rotationDecrypt(message, key);
 
 
-    printf("Decrypted message: %s\n", message);
-    break;
+        printf("Decrypted message: %s\n", message);
+        break;
     
-    case 3:
-printf("Enter a message:\n");
-scanf(" %[^\n]", message);
-printf("Enter a substitution alphabet\n");
-scanf("%s", alphabetSub);
-substitutionEncrypt(message, alphabetSub);
+        case 3:
+        printf("Enter a message:\n");
+        scanf(" %[^\n]", message);
+        printf("Enter a substitution alphabet\n");
+        scanf("%s", alphabetSub);
+        substitutionEncrypt(message, alphabetSub);
 
-    printf("Encrypted message: %s\n", message);
-    break;
+        printf("Encrypted message: %s\n", message);
+        break;
     
-    case 4:
-printf("Enter a message:\n");
-scanf(" %[^\n]", message);
-printf("Enter a substitution alphabet\n");
-scanf("%s", alphabetSub);
-substitutionDecrypt(message, alphabetSub);
+        case 4:
+        printf("Enter a message:\n");
+        scanf(" %[^\n]", message);
+        printf("Enter a substitution alphabet\n");
+        scanf("%s", alphabetSub);
+        substitutionDecrypt(message, alphabetSub);
 
-    printf("Decrypted message: %s\n", message);
-    break;
+        printf("Decrypted message: %s\n", message);
+        break;
     
-    case 5:
-printf("Enter first word of message:\n");
-scanf("%s", message);
-printf("Enter inital key to test:\n");
-scanf("%d", &key);
-wok(message, key);
-printf("Enter correct key:");
-scanf("%d", &keycorrect);
-printf("Enter entire message: ");
-scanf(" %[^\n]", completeMessage);
-rotationDecryptwok(completeMessage, keycorrect);
+        case 5:
+        printf("Enter first word of message:\n");
+        scanf("%s", message);
+        printf("Enter inital key to test:\n");
+        scanf("%d", &key);
+        wok(message, key);
+    
+        printf("Enter correct key:");
+        scanf("%d", &keycorrect);
+        printf("Enter entire message: ");
+        scanf(" %[^\n]", completeMessage);
+        rotationDecryptwok(completeMessage, keycorrect);
 
-    printf("Decrypted message: %s\n", completeMessage);
-    break;
-}
+        printf("Decrypted message: %s\n", completeMessage);
+        break;
+    }
 }
 
 void rotationEncrypt(char *message, int key){
