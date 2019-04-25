@@ -216,7 +216,6 @@ void rotationDecryptwok(char*completeMessage, int keycorrect){
     
     int i;
     char letter;
-    int lk;
 
 for(i = 0; completeMessage[i] != '\0'; ++i){
 		letter = completeMessage[i];
