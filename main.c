@@ -211,63 +211,75 @@ void substitutionDecrypt(char*message, char*sub)
     }
 }
     
-void wok(char*message, int key){
+void wok(char*message, int key)
+{
     
     int i;
     int lk;
     char letter;
     int counter=1;
     
-    while(counter<=26){
-    for (i=0; message[i]!= '\0'; i++)
-{   letter= message[i];
-if (letter >= 96 && letter <= 122)
+    while(counter<=26)
+    {
+        for (i=0; message[i]!= '\0'; i++)
         {
-            letter = letter - 32;
-        }
-    lk= letter - key;
-   
-   if (lk >= 65 && lk <= 90)
-   {
-       letter = lk;
+            letter= message[i];
+        
+            if (letter >= 96 && letter <= 122)
+            {
+                letter = letter - 32;
+            }   
             
-   }
-   else if (lk < 65) {
-       letter = lk + 26;
-       
-   }
-       message[i]= letter;
-}
-printf("%d: %s\n", counter, message);
-counter++;
-}
+            lk= letter - key;
+   
+            if (lk >= 65 && lk <= 90)
+            {    
+                letter = lk;
+            }
+             else if (lk < 65)
+            {
+                letter = lk + 26; 
+            }
+            
+            message[i]= letter;
+        }
+        
+        printf("%d: %s\n", counter, message);
+        counter++;
+    }
 }
 
-void rotationDecryptwok(char*completeMessage, int keycorrect){
-    
+void rotationDecryptwok(char*completeMessage, int keycorrect)
+{
     int i;
     char letter;
 
-for(i = 0; completeMessage[i] != '\0'; ++i){
+    for(i = 0; completeMessage[i] != '\0'; ++i)
+    {
 		letter = completeMessage[i];
 		
-		if(letter >= 97 && letter <= 122){
+		if(letter >= 97 && letter <= 122)
+		{
 			letter = letter - keycorrect;
 			
-			if(letter < 97){
+			if(letter < 97)
+			{
 				letter = letter + 26;
 			}
 			
 			completeMessage[i] = letter - 32;
 		}
-		else if(letter >= 65 && letter <= 90){
+		
+		else if(letter >= 65 && letter <= 90)
+		{
 			letter = letter - keycorrect;
 			
-			if(letter < 65){
-				letter = letter + 26;
+			if(letter < 65)
+			{
+			     letter = letter + 26;
 			}
 			
 			completeMessage[i] = letter;
 		}
-}
+    }
 }
