@@ -135,7 +135,7 @@ void rotationDecrypt(char*message, int key)
 		
 		if(letter >= 97 && letter <= 122)
 		{
-			letter = letter - key;
+			letter = letter -key;
 			
 			if(letter < 97)
 			{
