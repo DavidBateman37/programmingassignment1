@@ -1,12 +1,22 @@
-#include <stdio.h>
 
+#include <stdio.h>
+//These six lines are part of the functions which complete each task
+//These are known as the function prototypes and are used to define what arguements and return value the functions have
+//The void, in this case, is the return value which is the number a functoin gets replaced with in a line of code
+//In these functions, the return value is void since the function does not return a value once it is executed but rather stores calculated information before it is printed to the screen
+//The words in from of the return value are the function names, used when recalling the function in main
+//The values in parentheses are function arguments
+//These arguments are passed to the function by recieving an exact copy of its value
+//Once the function is executed, the new values stored in the arguments can be used as any other variable
 void rotationEncrypt(char*message, int key);
 void rotationDecrypt(char*message, int key);
 void substitutionEncrypt(char*message, char*sub);
 void substitutionDecrypt(char*message, char*sub);
 void wok(char*message, int key);
 void rotationDecryptwok(char*completeMessage, int keycorrect);
-
+//The asterix in the arguments indicate these as pointers
+//Pointers store the address of other variables
+//In this case, when the function is called, any change made to the pointer will also effect the original variable
 int main()
 {
     
