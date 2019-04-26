@@ -75,8 +75,6 @@ int main()
         case 5:
         printf("Enter first word of message:\n");
         scanf("%s", message);
-        printf("Enter inital key to test:\n");
-        scanf("%d", &key);
         wok(message, key);
     
         printf("Enter correct key:");
@@ -221,9 +219,11 @@ void wok(char*message, int key)
     
     while(counter<=26)
     {
+        key = 1;
         for (i=0; message[i]!= '\0'; i++)
         {
             letter= message[i];
+            
         
             if (letter >= 96 && letter <= 122)
             {
