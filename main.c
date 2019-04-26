@@ -40,16 +40,17 @@ int main()
     switch(test)//This is a switch case, which is used to organise large numbers of individual tasks
     {//The word test in parenthesis indicates this switch case is evaluating numbers from the task variable
     //This means once a number is inputted by the user, the corresponding case to the number implemented is executed
-        case 1:
-        printf("Enter a message:\n");
-        scanf(" %[^\n]", message);
-        printf("Enter a key:\n");
-        scanf("%d", &key); 
-        rotationEncrypt(message, key);
+        case 1://This is the rotation cipher encryption, rotation ciphers move the alphabet along the same amount of times as implied by the key, hence a key greater than 25 will begin to repeat itself
+        //Each letter in the message is replaced by the letter the same amount of spaces down the alphabet as the key, eg key of 2 makes A into C
+        printf("Enter a message:\n");//User inputs a message to be encrypted (or jumbled up by moving the alphabet along)
+        scanf(" %[^\n]", message);//This message is stored in the message array declared above
+        printf("Enter a key:\n");//A key between 1-25 is entered to shift the alphabet along for encryption
+        scanf("%d", &key);//This number is stored in the key variable
+        rotationEncrypt(message, key);//This indicates that variables entered will now be used in the function definition below where encryption takes place
 
 
-        printf("Decrypted message: %s\n", message);
-        break;
+        printf("Decrypted message: %s\n", message);//The now encrypted message was stored back in the message array in the function definition and is printed to the screen
+        break;//The break statement breaks the program execution out of the switch case. Since no more code is in main after this switch case, the program finishes
     
         case 2:
         printf("Enter a message:\n");
