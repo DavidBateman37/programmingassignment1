@@ -20,26 +20,26 @@ void rotationDecryptwok(char*completeMessage, int keycorrect);
 int main()
 {
     
-    char message[100];
-    char alphabetSub[27];
-    int key;
-    int test;
-    int keycorrect;
-    char completeMessage[100];
+    char message[100];//Array of length 100 which will store the message to be encrypted or decrypted
+    char alphabetSub[27];//Array which will be used in substitution ciphers to store the new alphabet order which will be substituted in for the conventional alphabet order
+    int key;//This variable will store the key (an integer between 0 and 26) for the rotation ciphers
+    int test;//This variable is used in selecting which test will be implemented
+    int keycorrect;//Used in the rotaion cipher without a key to store the key once found to be used to decipher the entire message
+    char completeMessage[100];//Used to store the entire message after key is found in the rotaion cipher without a key task
 
-    printf("Select a test by entering a number:\n");
+    printf("Select a test by entering a number:\n");//These printf statements are printed to the screen for the user to choose a task to run    
     printf("1: Rotation cipher encryption with a key\n");
     printf("2: Rotation cipher decryption with a key\n");
     printf("3: Subsitution cipher encryption with a substitute alphabet\n");
     printf("4: Substitution cipher decryption with a substitute alphabet\n");
     printf("5: Rotation cipher decryption without a key\n");
-    printf("Choose a test: \n");
-    scanf("%d", &test);
+    printf("Choose a test: \n");//Each number corresponds to the task described, inputting that number and hitting enter begins that task
+    scanf("%d", &test);//After the task number is entered, the number is stored and that information is used to tell the program which task to run
 
 
-    switch(test)
-    {
-    
+    switch(test)//This is a switch case, which is used to organise large numbers of individual tasks
+    {//The word test in parenthesis indicates this switch case is evaluating numbers from the task variable
+    //This means once a number is inputted by the user, the corresponding case to the number implemented is executed
         case 1:
         printf("Enter a message:\n");
         scanf(" %[^\n]", message);
@@ -92,9 +92,11 @@ int main()
         printf("Enter entire message: ");
         scanf(" %[^\n]", completeMessage);
         rotationDecryptwok(completeMessage, keycorrect);
-
         printf("Decrypted message: %s\n", completeMessage);
         break;
+        
+        default:
+        printf("Error, please enter a number between 1-5\n");
     }
 }
 
