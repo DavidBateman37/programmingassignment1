@@ -1,7 +1,7 @@
 #include <stdio.h>
 //These six lines are part of the functions which complete each task
 //These are known as the function prototypes and are used to define what arguements and return value the functions have
-//The void, in this case, is the return value which is the number a functoin gets replaced with in a line of code
+//The void, in this case, is the return value which is the number a function gets replaced with in a line of code
 //In these functions, the return value is void since the function does not return a value once it is executed but rather stores calculated information before it is printed to the screen
 //The words in from of the return value are the function names, used when recalling the function in main
 //The values in parentheses are function arguments
@@ -99,40 +99,43 @@ int main()
         printf("Error, please enter a number between 1-5\n");//Printed to the screen if a non valid case is selected
     }
 }
-
+//This is the function definition for the rotation cipher encryption
+//The inputs for this definition from inside main are the plain text to be decrypted and the key which tells the program how many spaces each letter should be rotated
+//The return value is void since the function doesn't return a value to the screen but stores information to be printed to the screen
+//The limitation for the message string is 99 letters or symbols including blank places since 100 data addresses are allocated for this string and one is needed for the \0 end symbol
 void rotationEncrypt(char *message, int key)
 {
     
-    int i;
+    int i;//Variables used in the function definition are declared at the top of the definition
     int lk;
     char letter;
-    for (i=0; message[i]!= '\0'; i++)
+    for (i=0; message[i]!= '\0'; i++)//While the array storring the message doesn't reach the end starting from the first element message[0] and incrementing by one each loop to increment each letter individually
     {
-        letter= message[i];
+        letter= message[i];//assigns the ascii value of the first element to the variable letter
         
-        if (letter >= 96 && letter <= 122)
+        if (letter >= 96 && letter <= 122)//if this value is between 'a' and 'z' (note the lowercase)
     
         {
-            letter = letter - 32;
+            letter = letter - 32;//This turns any lowercase input into uppercase
         }
         
-        lk= letter + key;
+        lk= letter + key;//assigns the variable lk the value of each element's ascii value plus the key to rotate the letter along the alphabet
    
-        if (lk >= 65 && lk <= 90)
+        if (lk >= 65 && lk <= 90)//If the message element is a capital letter
        
         {
-            letter = lk;    
+            letter = lk;//the variable letter is assigned the value of the inital element plus the key to shift the element down the ascii alphabet   
         }
     
-        else if (lk > 90)
+        else if (lk > 90)//if adding the key to the element pushes if off the end of the alphabet eg: 'Z' rotated two more places
         
         {
-            letter = lk - 26;       
+            letter = lk - 26;//the letter is rotated back to the beginning of the alphabet       
         }
        
-       message[i]= letter;
-    }
-}
+       message[i]= letter;//The string element is reassigned a value equal to letter which is now the encoded letter
+    }//This loop continues until all letters are encoded and the '\0' sign is reached
+}//These values are now stored ready to be printed to the screen in main
 
 void rotationDecrypt(char*message, int key)
 {
