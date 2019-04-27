@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 //These six lines are part of the functions which complete each task
 //These are known as the function prototypes and are used to define what arguements and return value the functions have
@@ -64,7 +63,7 @@ int main()
         break;
     
         case 3://This is an encryption by substitution cipher where an entirely new ordered list of letters is used substituted in for the letters of the alphabet ie the first letter in the substitute list is subbed in everywhere there is an A in the message
-        printf("Enter a message:\n");//Plain text is stored in the message array to be encoded
+        printf("Enter a message:\n");//Plain text is stored in the message string to be encoded
         scanf(" %[^\n]", message);
         printf("Enter a substitution alphabet\n");//A list of 26 letters in any order is entered without spaces, these will be substited in for their corresponding alphabet letters
         scanf("%s", alphabetSub);//This is stored in the array  alphabetSub which has length 27 for the 26 letters entered and a terminating character (you dont enter this)
@@ -73,31 +72,31 @@ int main()
         printf("Encrypted message: %s\n", message);//The encrypted message is stored in message in the function and printed to the screen
         break;
     
-        case 4:
-        printf("Enter a message:\n");
-        scanf(" %[^\n]", message);
-        printf("Enter a substitution alphabet\n");
-        scanf("%s", alphabetSub);
-        substitutionDecrypt(message, alphabetSub);
+        case 4://This is decrypting cipher text with a substitution cipher, similar to encrypting but the letters that correspond to letters in the correct alphabet are replaced with these letters to form plain text
+        printf("Enter a message:\n");//Cipher text is entered here
+        scanf(" %[^\n]", message);//Cipher text is stored in the string message including white space (white space stays the same)
+        printf("Enter a substitution alphabet\n");//The disordered string used to encode the message is entered here in capital form with no spaces
+        scanf("%s", alphabetSub);//The 26 letters are stored alphabetSub
+        substitutionDecrypt(message, alphabetSub);//The data is run through the function defintion where the message is decoded
 
-        printf("Decrypted message: %s\n", message);
+        printf("Decrypted message: %s\n", message);//The decoded message is stored in mesage and printed to the screen
         break;
     
-        case 5:
-        printf("Enter first word of message:\n");
-        scanf("%s", message);
-        wok(message, key);
+        case 5://This task is a rotation cipher decryption without knowing the key, hence the key must be found first
+        printf("Enter first word of message:\n");//The first word (or a single word) in the cipher text is entered
+        scanf("%s", message);//This word will be used to find the correct key
+        wok(message, key);//This function uses the letter entered to print all 26 solutions for different keys, the user can then find the corresponding key that makes a correct word
     
-        printf("Enter correct key:");
-        scanf("%d", &keycorrect);
-        printf("Enter entire message: ");
-        scanf(" %[^\n]", completeMessage);
-        rotationDecryptwok(completeMessage, keycorrect);
-        printf("Decrypted message: %s\n", completeMessage);
+        printf("Enter correct key:");//Once the key has been found, it is entered here and a similar process to case 2 is completed
+        scanf("%d", &keycorrect);//Stored in a different variable for easy distinction
+        printf("Enter entire message: ");//Now the entire cipher text can be entered for decoding
+        scanf(" %[^\n]", completeMessage);//Stored in a different array completeMessage to be used in the following function
+        rotationDecryptwok(completeMessage, keycorrect);//The entered data is now run through the function where the message is decoded by rotation corresponding to the correct key
+        printf("Decrypted message: %s\n", completeMessage);//The decoded message is then printed to the screen after being stored in completeMessage
         break;
         
-        default:
-        printf("Error, please enter a number between 1-5\n");
+        default://If a number corresponding to the cases above is not entered, the program will print an error to the screen and return the program to tell the user to select a valid case
+        printf("Error, please enter a number between 1-5\n");//Printed to the screen if a non valid case is selected
     }
 }
 
@@ -296,3 +295,4 @@ void rotationDecryptwok(char*completeMessage, int keycorrect)
 		}
     }
 }
+
