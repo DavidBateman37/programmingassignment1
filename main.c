@@ -99,7 +99,7 @@ int main()
         printf("Error, please enter a number between 1-5\n");//Printed to the screen if a non valid case is selected
     }
 }
-//This is the function definition for the rotation cipher encryption
+//This is the function definition for the rotation cipher encryption which takes each letter from message and rotates in the number of spaces in the alphabet specified by the key
 //The inputs for this definition from inside main are the plain text to be decrypted and the key which tells the program how many spaces each letter should be rotated
 //The return value is void since the function doesn't return a value to the screen but stores information to be printed to the screen
 //The limitation for the message string is 99 letters or symbols including blank places since 100 data addresses are allocated for this string and one is needed for the \0 end symbol
@@ -137,41 +137,49 @@ void rotationEncrypt(char *message, int key)
     }//This loop continues until all letters are encoded and the '\0' sign is reached
 }//These values are now stored ready to be printed to the screen in main
 
+//The is the rotation cipher decryption which takes a decrypted message and rotates each letter back the number of spaces in the alphabet specificed by the key to make plain text which can be read
+//The inputs for this function are the cipher text to be decoded and the rotation key which tells the program how many spaces each letter should be rotated to be decrypted
+//The return value is again void since the function doesn't return a value after execution itself
+//The limitation for the message string is again 99 for the same reasons as in the previous function
 void rotationDecrypt(char*message, int key)
 {
     
-    int i;
+    int i;//variables need to be declared again since variables in previous function are only known inside that function definition
     char letter;
-    for(i = 0; message[i] != '\0'; ++i)
+    for(i = 0; message[i] != '\0'; i++)//i is declared as starting at 0 and the loop runs, incrementing i each cycle until the end of the cipher text is found
     {
-		letter = message[i];
+		letter = message[i];//the variable letter is assigned the value of the elements of message each iteration
 		
-		if(letter >= 97 && letter <= 122)
+		if(letter >= 97 && letter <= 122)//If the letter is lowercase
 		{
-			letter = letter -key;
+			letter = letter -key;//letter is assigned the value of the encoded element minus the key to produce the decrypted lowercase letter
 			
-			if(letter < 97)
+			if(letter < 97)//if substracting the key makes the element fall of the start of the alphabet
 			{
-				letter = letter + 26;
+				letter = letter + 26;//26 is added to make the letter added to the end of the alphabet again
 			}
 			
-			message[i] = letter - 32;
+			message[i] = letter - 32;//32 is subtracted to turn any lowercase elements into uppercase since all output should be uppercase
 		}
 		
-		else if(letter >= 65 && letter <= 90)
+		else if(letter >= 65 && letter <= 90)//if the element is an uppercase letter
 		{
-			letter = letter - key;
+			letter = letter - key;//the variable letter is assigned the value of the decoded element 
 			
-			if(letter < 65)
+			if(letter < 65)//the subtracting the key pushes the element off the front of the alphabet
 			{
-				letter = letter + 26;
+				letter = letter + 26;//26 is added to move that element back to the end of the alphabet
 			}
 			
-			message[i] = letter;
+			message[i] = letter;//each element is then reassigned the coded letter for each iteration of the program
 		}
 	}
 }
 
+//The function encrypts a cipher by substitution, that is is replaces each letter in the alphabet with a letter from an alphabet of a different order, eg A in the message is replaced with the first letter of the substitution alphabet 
+//The inputs for the function are the message in plain text to be encrypted and a string of 26 uppercase letters which will be used to encrypt the message
+//The return value is again void since the function isn't returning a value itself but is being used to alter the values of each letter in the message
+//The limitation for the message is again 99 for the same reason as previously and the string length for the substitute alphabet is 27 since 26 letters need to be entered and one space if left for the '0\' symbol
 void substitutionEncrypt(char*message, char*sub)
 {
     int i;
