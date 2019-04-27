@@ -52,25 +52,25 @@ int main()
         printf("Decrypted message: %s\n", message);//The now encrypted message was stored back in the message array in the function definition and is printed to the screen
         break;//The break statement breaks the program execution out of the switch case. Since no more code is in main after this switch case, the program finishes
     
-        case 2:
-        printf("Enter a message:\n");
-        scanf(" %[^\n]", message);
+        case 2://This is the rotation cipher decryption, takes cipher text and moves the alphabet back the number of spaces allocated by the key 
+        printf("Enter a message:\n");//Enter the cipher text to be decoded, it is stored in the array message
+        scanf(" %[^\n]", message);//The symbols after the % sign includes blank space in the stored message however it is not encoded 
         printf("Enter a key:\n");
-        scanf("%d", &key); 
-        rotationDecrypt(message, key);
+        scanf("%d", &key);//The message and key must be input before the function is executed as these values are used in the function
+        rotationDecrypt(message, key);//The cipher text and key entered are used in the function definition where each letter is rotated backwards with the key to form plain text
 
 
-        printf("Decrypted message: %s\n", message);
+        printf("Decrypted message: %s\n", message);//The plain text is then printed to the screen after it is stored back in message (done in the function definition)
         break;
     
-        case 3:
-        printf("Enter a message:\n");
+        case 3://This is an encryption by substitution cipher where an entirely new ordered list of letters is used substituted in for the letters of the alphabet ie the first letter in the substitute list is subbed in everywhere there is an A in the message
+        printf("Enter a message:\n");//Plain text is stored in the message array to be encoded
         scanf(" %[^\n]", message);
-        printf("Enter a substitution alphabet\n");
-        scanf("%s", alphabetSub);
-        substitutionEncrypt(message, alphabetSub);
+        printf("Enter a substitution alphabet\n");//A list of 26 letters in any order is entered without spaces, these will be substited in for their corresponding alphabet letters
+        scanf("%s", alphabetSub);//This is stored in the array  alphabetSub which has length 27 for the 26 letters entered and a terminating character (you dont enter this)
+        substitutionEncrypt(message, alphabetSub);//This entered data is used in the function definition below 
 
-        printf("Encrypted message: %s\n", message);
+        printf("Encrypted message: %s\n", message);//The encrypted message is stored in message in the function and printed to the screen
         break;
     
         case 4:
