@@ -189,120 +189,131 @@ void substitutionEncrypt(char*message, char*sub)
     {
         letter = message[i];//the variable letter is assigned the value of the message elements for encryption to begin
         
-        if (letter >= 97 && letter <= 122)
+        if (letter >= 97 && letter <= 122)//if the value assigned to letter is a lowercase letter
         {
-            letter = letter - 32;
+            letter = letter - 32;//the lowercase letter is converted into an uppercase letter
         }
         
-        if(letter>=65 && letter<=90)
+        if(letter>=65 && letter<=90)//if the value assigned to letter is an uppercase letter
         {
-            letter = sub[letter-65];
+            letter = sub[letter-65];//the variable letter is given the value of the element in the sub array that is equal to the initial element minus 65 ie A in the message is given the value of the first array element in the substitute alphabet and so on
         }
         
-        message[i] = letter;
+        message[i] = letter;//The string element is replaced with the now encrypted letter
     }
 }
 
+//This function decrypts cipher text by replacing each letter in the message that was substituted with a letter from a substitute alphabet with the correct letter corresponding to their place in the alphabet
+//The inputs are message which is the cipher text to be decrypted and the substitue alphabet string which was used to encrypt the message initially
+//The return value is void since the function isn't return a value itself but is being used to decode letters and store them in the string message to be recalled in main
+//The limitation for the message is 99 characters since one is needed for the end '0\' symbol (this doesn't need to be entered) and 26 uppercase letters for the substitute alphabets with one space again left for the end symbol
 void substitutionDecrypt(char*message, char*sub)
 {
-    int i;
-    int compare=0;
+    int i;//Variables to be used inside the function definition are initialised
+    int compare=0;//This variable is used to compare between the substitue alphabet and the message string elements. Once the message element has the same value as the sub element, the loop breaks 
     int letter;
     
-    for(i=0; message[i]!= '0'; i++)
+    for(i=0; message[i]!= '0'; i++)//For loop which decodes each element individually and ends once the end of the message is reached
     {
-        letter = message[i];
+        letter = message[i];//Letter is assigned the value of the message elements
         
-        if (letter >= 96 && letter <= 122)
+        if (letter >= 96 && letter <= 122)//If the message element is lower case
         {
-            letter = letter - 32;
+            letter = letter - 32;//The lower case letter is made uppercase
         }
         
-        if(letter >= 65 && letter <=90)
+        if(letter >= 65 && letter <=90)//If the element is uppercase
         {
-            for( compare=0; compare<27; compare++)
+            for( compare=0; compare<27; compare++)//For loop which compares the message element to all of the possible elements in the substitute alphabet until a match is found
             {
-                if(message[i]== sub[compare])
+                if(message[i]== sub[compare])//If the message element is the same as the element in the substitue alphabet (ie once the letter in the message is the same as the letter in the substite alphabet)
                 {
-                    break;
+                    break;//The loop breaks
                 }
             }    
-            message[i]= compare + 65;
+            message[i]= compare + 65;//The message element is then assigned the position number of which the matching letters were found plus 65 which gives the uppercase letter which should be in that position of the alphabet (since the elements in an array start at 0) ie the 7th position should be ascii value 71 which is G which is correct 
         }
     }
 }
-    
+//The function is the first part of task 5, it takes the first word in an rotation encrypted cipher and prints all 26 possible decryptions for all 26 different key options
+//The input for this function is only the encrypted word, no key is needed to be entered since we don't yet know the correct key for decryptions
+//The return value is void since the function itself isn't returning a value
+//The limitation for the length of the word entered is 99 characters
 void wok(char*message, int key)
 {
     
-    int i;
+    int i;//Variables used inside the function definition are declared before being used
     int lk;
     char letter;
-    int counter=1;
+    int counter=1;//This variable is used to count the number of possible decyptions printed and exit the loop when all 26 different possiblities are printed
     
-    while(counter<=26)
+    while(counter<=26)//This while loop limits the number of possible solutions printed to only 26 since after this the same words would started being repeatedly printed
     {
-        key = 1;
-        for (i=0; message[i]!= '\0'; i++)
+        key = 1;//Initialise the key at 1 at the beginning, each iteration of the loop the message elements are moved one place down the alphabet
+        for (i=0; message[i]!= '\0'; i++)//Alters each element of the message beginning with the message[0] element and ends once all elements are altered
         {
-            letter= message[i];
+            letter= message[i];//Letter variable is assigned the value of the message string element
             
         
-            if (letter >= 96 && letter <= 122)
+            if (letter >= 96 && letter <= 122)//If the element ascii value indicates it's a lowercase letter
             {
-                letter = letter - 32;
+                letter = letter - 32;//Subtract 32 to make the element the uppercase variant of its letter
             }   
             
-            lk= letter - key;
+            lk= letter - key;//Initialise the variable lk to have the value of the string element minus the value of the key (which progressively substracts more each iteration)
    
-            if (lk >= 65 && lk <= 90)
+            if (lk >= 65 && lk <= 90)//If the string element minus the key is an uppercase letter
             {    
-                letter = lk;
+                letter = lk;//The letter variable is assigned this value
             }
-             else if (lk < 65)
+             else if (lk < 65)//If the substracted key moves the elements value off the top of the alphabet
             {
-                letter = lk + 26; 
+                letter = lk + 26;//26 is added to move that element back to the end of the alphabet
             }
             
-            message[i]= letter;
+            message[i]= letter;//The string element is assigned the new altered value of letter 
         }
         
-        printf("%d: %s\n", counter, message);
-        counter++;
+        printf("%d: %s\n", counter, message);//Each altered word is then printed with its respective key next to it
+        counter++;//Counter is incremented each loop to keep track of how many possible solutions that have been printed
     }
 }
-
+//This function is used in the second part of task 5, it is essentially the same as task 2 but uses different strings and variables since the usual variables are used in the first section of task 5
+//Once the correct key is known, the entire message can be decrypted
+//The input for this function is the entire cipher text to be decrypted and the correct key found in the first section of task 5 
+//The return value is again void since the function itself is not returning any values but strings being used inside the functoin are storing decoded letters to be printed to the screen in main
+//The limitations of the message entered to be decrypted is 99 characters since one is needed for the end of string symbol
 void rotationDecryptwok(char*completeMessage, int keycorrect)
 {
-    int i;
+    int i;//Variables used in the function are declared in the function definition
     char letter;
 
-    for(i = 0; completeMessage[i] != '\0'; ++i)
+    for(i = 0; completeMessage[i] != '\0'; ++i)//Loop is used to alter each element of the message individually and finish when the end of the message is reached
     {
-		letter = completeMessage[i];
+		letter = completeMessage[i];//The letter variable is assigned the value of the element in the string completeMessage
 		
-		if(letter >= 97 && letter <= 122)
+		if(letter >= 97 && letter <= 122)//If the element is a lowercase letter
 		{
-			letter = letter - keycorrect;
+			letter = letter - keycorrect;//The letter variable is assigned the value of what is originall was (the inital element value) minus the key found in the earlier function
 			
-			if(letter < 97)
+			if(letter < 97)//If subtracting the key pushes the element off the front of the alphabet
 			{
-				letter = letter + 26;
+				letter = letter + 26;//26 is added to move that element to the end of the alphabet
 			}
 			
-			completeMessage[i] = letter - 32;
+			completeMessage[i] = letter - 32;//The value assigned back to the array element is the value decoded in letter minus 32 to make the letter an uppercase letter
 		}
 		
-		else if(letter >= 65 && letter <= 90)
+		else if(letter >= 65 && letter <= 90)//If the array element is an uppercase letter
 		{
-			letter = letter - keycorrect;
+			letter = letter - keycorrect;//The letter variable is again assigned the value of the inital element minus the key
 			
-			if(letter < 65)
+			if(letter < 65)//If subtracting the key moves the element off the front of the alphabet
 			{
-			     letter = letter + 26;
+			     letter = letter + 26;//The element is moved to the back of the alphabet by adding 26 to it
 			}
 			
-			completeMessage[i] = letter;
+			completeMessage[i] = letter;//The decoded letter is then assigned back to the array element to be printed to the user in main
 		}
     }
 }
