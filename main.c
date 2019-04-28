@@ -182,12 +182,12 @@ void rotationDecrypt(char*message, int key)
 //The limitation for the message is again 99 for the same reason as previously and the string length for the substitute alphabet is 27 since 26 letters need to be entered and one space if left for the '0\' symbol
 void substitutionEncrypt(char*message, char*sub)
 {
-    int i;
+    int i;//variables used inside the function definition need to be declared
     int letter;
     
-    for(i=0; message[i]!= '0'; i++)
+    for(i=0; message[i]!= '0'; i++)//for loop is initiated where the loop runs for each element of the string message until the entire message has been encrypted
     {
-        letter = message[i];
+        letter = message[i];//the variable letter is assigned the value of the message elements for encryption to begin
         
         if (letter >= 97 && letter <= 122)
         {
