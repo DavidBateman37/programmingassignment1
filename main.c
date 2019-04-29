@@ -1,3 +1,7 @@
+//The purpose of this program is to encrpyt and decrypt messages using both rotation and substitution ciphers
+//By entering a message and the corresponding key which used to encrypt or decrypt the message, the program will encrpyt or decrypt each letter individually before printing the complete message to the screen
+//The user can choose to encrypt a message in two different ways by choosing task 1 or 3
+//Decryption in two different ways with or without a known key can be omplete by choosing task 2,4 or 5
 #include <stdio.h>
 //These six lines are part of the functions which complete each task
 //These are known as the function prototypes and are used to define what arguements and return value the functions have
