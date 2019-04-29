@@ -28,8 +28,7 @@ int main()
     int key;//This variable will store the key (an integer between 0 and 26) for the rotation ciphers
     int test;//This variable is used in selecting which test will be implemented
     int keycorrect;//Used in the rotaion cipher without a key to store the key once found to be used to decipher the entire message
-    char completeMessage[100];//Used to store the entire message after key is found in the rotaion cipher without a key task
-
+  
     printf("Select a test by entering a number:\n");//These printf statements are printed to the screen for the user to choose a task to run    
     printf("1: Rotation cipher encryption with a key\n");
     printf("2: Rotation cipher decryption with a key\n");
