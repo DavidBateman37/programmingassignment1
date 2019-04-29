@@ -3,6 +3,7 @@
 //The user can choose to encrypt a message in two different ways by choosing task 1 or 3
 //Decryption in two different ways with or without a known key can be omplete by choosing task 2,4 or 5
 #include <stdio.h>
+#include <string.h>
 //These six lines are part of the functions which complete each task
 //These are known as the function prototypes and are used to define what arguements and return value the functions have
 //The void, in this case, is the return value which is the number a function gets replaced with in a line of code
@@ -246,14 +247,18 @@ void substitutionDecrypt(char*message, char*sub)
 void wok(char*message, int key)
 {
     
-    int i;//Variables used inside the function definition are declared before being used
+    int i=0;//Variables used inside the function definition are declared before being used
     int lk;
     char letter;
     int counter=1;//This variable is used to count the number of possible decyptions printed and exit the loop when all 26 different possiblities are printed
-    
+    char completeMessage[500];
     while(counter<=26)//This while loop limits the number of possible solutions printed to only 26 since after this the same words would started being repeatedly printed
     {
         key = 1;//Initialise the key at 1 at the beginning, each iteration of the loop the message elements are moved one place down the alphabet
+        for (i=0; i < 1000; i++)
+        {
+            completeMessage[i]= '\0';
+        }
         for (i=0; message[i]!= '\0'; i++)//Alters each element of the message beginning with the message[0] element and ends once all elements are altered
         {
             letter= message[i];//Letter variable is assigned the value of the message string element
@@ -278,10 +283,27 @@ void wok(char*message, int key)
             message[i]= letter;//The string element is assigned the new altered value of letter 
         }
         
-        printf("%d: %s\n", counter, message);//Each altered word is then printed with its respective key next to it
-        counter++;//Counter is incremented each loop to keep track of how many possible solutions that have been printed
+        char commonword1[] = " THE ";  
+        char commonword2[] = " AND "; 
+        char commonword3[] = " BE ";
+        char commonword4[] = " TO ";
+        char commonword5[] = " OF ";
+        
+        if (strstr(completeMessage, commonword1) != NULL || strstr(completeMessage, commonword2) != NULL || strstr(completeMessage, commonword3) != NULL || strstr(completeMessage, commonword4) != NULL || strstr(completeMessage, commonword5) != NULL) 
+        {
+            for (i = 0; message[i]!= '\0'; i++) 
+            {
+    
+            message[i] = completeMessage[i];
+            
+            }   
+
+        }
+        
+        printf("Key = %d: %s\n", key, completeMessage);
     }
 }
+
 //This function is used in the second part of task 5, it is essentially the same as task 2 but uses different strings and variables since the usual variables are used in the first section of task 5
 //Once the correct key is known, the entire message can be decrypted
 //The input for this function is the entire cipher text to be decrypted and the correct key found in the first section of task 5 
